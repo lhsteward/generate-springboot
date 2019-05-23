@@ -136,6 +136,8 @@ public class DatabaseUtils {
         //加载模板文件
         cfg.setClassForTemplateLoading(DatabaseUtils.class, "/ftl");
 		Template t1 = cfg.getTemplate("model.ftl");
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("modelPackage", properties.getProperty("modelPackage"));
 		Template t2 = cfg.getTemplate("page.ftl");
 		String sBuffer = "\n";
 		String str = "\n";
@@ -162,7 +164,7 @@ public class DatabaseUtils {
 		Writer out1 = new OutputStreamWriter(generateFile(properties.getProperty("filePath")+"\\"+properties.getProperty("modelPackage").replaceAll("\\.", "\\\\"), "Page.java"));
 		try {
 			t1.process(map, out);
-			t2.process(null, out);
+			t2.process(map1, out);
 		} catch (TemplateException e) {
 			e.printStackTrace();
 		}finally {
