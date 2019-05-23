@@ -136,6 +136,7 @@ public class DatabaseUtils {
         //加载模板文件
         cfg.setClassForTemplateLoading(DatabaseUtils.class, "/ftl");
 		Template t1 = cfg.getTemplate("model.ftl");
+		Template t2 = cfg.getTemplate("page.ftl");
 		String sBuffer = "\n";
 		String str = "\n";
 		if(tableName.length() > 3 && tableName.substring(0,4).equalsIgnoreCase("sys_")){
@@ -158,11 +159,15 @@ public class DatabaseUtils {
 		}
 		map.put("property", sBuffer+=str);
 		Writer out = new OutputStreamWriter(generateFile(properties.getProperty("filePath")+"\\"+properties.getProperty("modelPackage").replaceAll("\\.", "\\\\"), tableName+".java"));
+		Writer out1 = new OutputStreamWriter(generateFile(properties.getProperty("filePath")+"\\"+properties.getProperty("modelPackage").replaceAll("\\.", "\\\\"), "Page.java"));
 		try {
 			t1.process(map, out);
-			out.flush();
+			t2.process(null, out);
 		} catch (TemplateException e) {
 			e.printStackTrace();
+		}finally {
+			out.flush();
+			out1.flush();
 		}
 	}
 
@@ -323,13 +328,14 @@ public class DatabaseUtils {
 						Writer out = new OutputStreamWriter(generateFile(properties.getProperty("filePath")+"\\"+properties.getProperty("daoPackage").replaceAll("\\.", "\\\\"), mapperName+"Mapper.java"));
 						try {
 							t1.process(map, out);
-							out.flush();
 							generateMapper(connection,  tables.get(i), properties.getProperty("modelPackage"), properties.getProperty("daoPackage"));
 							generateService(tables.get(i), properties.getProperty("daoPackage"), properties.getProperty("modelPackage"), properties.getProperty("servicePackage"),properties.getProperty("basePackage"));
 							generateServiceImpl(tables.get(i), properties.getProperty("daoPackage"), properties.getProperty("modelPackage"), properties.getProperty("servicePackage"),properties.getProperty("basePackage"));
 							generateController(tables.get(i), properties.getProperty("servicePackage"), properties.getProperty("modelPackage"),properties.getProperty("controllerPackage"));
 						} catch (TemplateException e) {
 							e.printStackTrace();
+						}finally {
+							out.flush();
 						}
 					}
 				} catch (SQLException e) {
