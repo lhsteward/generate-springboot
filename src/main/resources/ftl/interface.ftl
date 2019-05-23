@@ -2,10 +2,6 @@
 package ${daoPackage};
 
 import ${modelPackage}.${tableName};
-import ${daoPackage}.BaseMapper;
-
-import java.util.List;
-import org.springframework.stereotype.Repository;
 
 
 /** 

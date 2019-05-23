@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 import ${daoPackage}.${tableName}Mapper;
 import ${modelPackage}.${tableName};
 import com.github.pagehelper.PageHelper;
-import ${basePackage}.ResultBody;
 
 
 
@@ -26,7 +25,7 @@ public class ${tableName}ServiceImpl implements ${tableName}Service{
 	/**
 	 * @Title: selectAll 
 	 * @Description: 查询所有    参数为空默认查询所有
-	 * @param ${tableName}
+	 * @param t
 	 * @author lhc
 	 */
 	@Override
@@ -39,7 +38,7 @@ public class ${tableName}ServiceImpl implements ${tableName}Service{
 	/**
 	 * @Title: insert
 	 * @Description: 添加
-	 * @param ${tableName}
+	 * @param t
 	 * @author lhc
 	 */
 	@Override
@@ -55,7 +54,7 @@ public class ${tableName}ServiceImpl implements ${tableName}Service{
 	/**
 	 * @Title: update
 	 * @Description: 修改
-	 * @param ${tableName}
+	 * @param t
 	 * @author lhc
 	 */
 	@Override
@@ -71,7 +70,7 @@ public class ${tableName}ServiceImpl implements ${tableName}Service{
 	/**
 	 * @Title: delete
 	 * @Description: 删除  没有参数将删除全部(推荐传入主键)
-	 * @param ${tableName}
+	 * @param t
 	 * @author lhc
 	 */
 	@Override

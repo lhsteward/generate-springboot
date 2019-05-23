@@ -1,8 +1,5 @@
 package ${controllerPackage};
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,7 +47,7 @@ public class ${tableName}Controller {
 	/**
 	 * @Title: selectAll 
 	 * @Description: 查询所有信息
-	 * @param ${tableName}
+	 * @param t
 	 * @author lhc
 	 */
 	@RequestMapping(value = "selectAll",method={RequestMethod.GET,RequestMethod.POST})
@@ -62,7 +59,7 @@ public class ${tableName}Controller {
 	/**
 	 * @Title: insert
 	 * @Description: 插入
-	 * @param ${tableName}
+	 * @param t
 	 * @author lhc
 	 */
 	@RequestMapping(value = "insert",method={RequestMethod.GET,RequestMethod.POST})
@@ -74,7 +71,7 @@ public class ${tableName}Controller {
 	/**
 	 * @Title: update 
 	 * @Description: 修改
-	 * @param ${tableName}
+	 * @param t
 	 * @author lhc
 	 */
 	@RequestMapping(value = "update",method={RequestMethod.GET,RequestMethod.POST})
@@ -86,7 +83,7 @@ public class ${tableName}Controller {
 	/**
 	 * @Title: delete 
 	 * @Description: 删除 没有参数将删除全部(推荐传入主键)
-	 * @param ${tableName}
+	 * @param t
 	 * @author lhc
 	 */
 	@RequestMapping(value = "delete",method={RequestMethod.GET,RequestMethod.POST})
