@@ -1,4 +1,4 @@
-package ${modelPackage}.Page;
+package ${modelPackage};
 
 import lombok.Data;
 
