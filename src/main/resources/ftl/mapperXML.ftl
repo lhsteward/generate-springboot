@@ -16,18 +16,14 @@
         INSERT INTO ${tableNameL} ( 
 	    <trim prefix="   " prefixOverrides=",">
 		<#list column as list>
-		<#if list_index != 0>
 			<if test="${list} != null and ${list} != ''"> , ${list}</if>
-		</#if>
 		</#list>
 	 	</trim>
 	     )
         VALUES( 
         <trim prefix="   " prefixOverrides=","> 
 		<#list column as list>
-		<#if list_index != 0>
 			<if test="${list} != null and ${list} != ''"> , ${r"#{"} ${list} ${r"}"}</if>
-		</#if>
 		</#list>
         </trim>
         )
@@ -38,7 +34,9 @@
         UPDATE ${tableNameL}  
         <trim prefix=" SET  " prefixOverrides=",">
 		<#list column as list>
-			<if test="${list} != null and ${list} != ''"> ,${list} = ${r"#{"} ${list} ${r"}"}</if>
+			<#if list_index != 0>
+				<if test="${list} != null and ${list} != ''"> ,${list} = ${r"#{"} ${list} ${r"}"}</if>
+			</#if>
 		</#list>
         </trim>
         <trim prefix=" WHERE  " prefixOverrides=",">
