@@ -164,7 +164,7 @@ public class DatabaseUtils {
 		Writer out1 = new OutputStreamWriter(generateFile(properties.getProperty("filePath")+"\\"+properties.getProperty("modelPackage").replaceAll("\\.", "\\\\"), "Page.java"));
 		try {
 			t1.process(map, out);
-			t2.process(map1, out);
+			t2.process(map1, out1);
 		} catch (TemplateException e) {
 			e.printStackTrace();
 		}finally {
@@ -330,10 +330,11 @@ public class DatabaseUtils {
 						Writer out = new OutputStreamWriter(generateFile(properties.getProperty("filePath")+"\\"+properties.getProperty("daoPackage").replaceAll("\\.", "\\\\"), mapperName+"Mapper.java"));
 						try {
 							t1.process(map, out);
-							generateMapper(connection,  tables.get(i), properties.getProperty("modelPackage"), properties.getProperty("daoPackage"));
-							generateService(tables.get(i), properties.getProperty("daoPackage"), properties.getProperty("modelPackage"), properties.getProperty("servicePackage"),properties.getProperty("basePackage"));
-							generateServiceImpl(tables.get(i), properties.getProperty("daoPackage"), properties.getProperty("modelPackage"), properties.getProperty("servicePackage"),properties.getProperty("basePackage"));
-							generateController(tables.get(i), properties.getProperty("servicePackage"), properties.getProperty("modelPackage"),properties.getProperty("controllerPackage"));
+							String thisTableName = StringUtils.toLowerCaseFirstOne(tables.get(i));
+							generateMapper(connection, thisTableName, properties.getProperty("modelPackage"), properties.getProperty("daoPackage"));
+							generateService(thisTableName, properties.getProperty("daoPackage"), properties.getProperty("modelPackage"), properties.getProperty("servicePackage"),properties.getProperty("basePackage"));
+							generateServiceImpl(thisTableName, properties.getProperty("daoPackage"), properties.getProperty("modelPackage"), properties.getProperty("servicePackage"),properties.getProperty("basePackage"));
+							generateController(thisTableName, properties.getProperty("servicePackage"), properties.getProperty("modelPackage"),properties.getProperty("controllerPackage"));
 						} catch (TemplateException e) {
 							e.printStackTrace();
 						}finally {
@@ -430,7 +431,7 @@ public class DatabaseUtils {
 				}
 				map.put("column", column);
 				map.put("tableName", newTableName);
-				map.put("tableNameL", StringUtils.toLowerCaseFirstOne(newTableName));
+				map.put("tableNameL", tableName);
 				map.put("modelPackage", modelPackage);
 				map.put("daoPackage", daoPackage);
 				Writer out = new OutputStreamWriter(generateFile(properties.getProperty("filePath")+"\\"+properties.getProperty("mapperPackage").replaceAll("\\.", "\\\\"), newTableName+"Mapper.xml"));
