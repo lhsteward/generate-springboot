@@ -49,7 +49,7 @@
     </update>
     
     <!-- 删除 -->
-    <delete id="delete"  parameterType="${modelPackage}.${tableName}">  
+    <delete id="delete"  parameterType="${modelPackage}.${tableName}">
 		DELETE FROM ${tableNameL}  
 		<trim prefix=" WHERE " prefixOverrides="AND">
 		<#list column as list>

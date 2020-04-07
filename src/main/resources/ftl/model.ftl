@@ -15,6 +15,7 @@ import lombok.Data;
 *@author lhc
 **/
 @Data
+@ApiModel(description = "${tableName}")
 public class ${tableName} extends Page{
 	
 	${property}

@@ -42,7 +42,7 @@ public interface BaseMapper<T> {
 	 * @author lihaichao
 	 * @date createTime：2018年5月19日上午11:09:52
 	 */
-	public int update(T p);
+	public int update(T t);
 	
 	
 	/**
@@ -52,16 +52,7 @@ public interface BaseMapper<T> {
 	 * @author lihaichao
 	 * @date createTime：2018年5月19日上午11:14:05
 	 */
-	public int delete(T p);
+	public int delete(T t);
 	
-	
-	/**
-	 * @Title: deleteAll 
-	 * @Description: 批量删除  
-	 * @param list  id数组集合
-	 * @param @return
-	 * @author lihaichao
-	 * @date createTime：2018年5月19日上午11:14:56
-	 */
-	public int deleteAll(String[] list);
+
 }

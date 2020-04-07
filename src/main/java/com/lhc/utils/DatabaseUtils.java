@@ -152,7 +152,7 @@ public class DatabaseUtils {
 				map.put("typeList", typeList);
 				//注释
 				String comment = commentList.get(i).equals("") ? columnList.get(i) : commentList.get(i) ;
-				sBuffer +="	private "+typeList.get(i)+" "+columnList.get(i)+";  //"+comment+"\n";
+				sBuffer +="	@ApiModelProperty(\""+comment+"\")\n	private "+typeList.get(i)+" "+columnList.get(i)+";  //"+comment+"\n";
 				/*String pString=StringUtils.toLowerCaseFirstOne(columnList.get(i));
 				str += "	public "+typeList.get(i)+" get"+StringUtils.upperCase(columnList.get(i))+"() {\n"
 						+"		return "+pString+";\n	}\n\n";

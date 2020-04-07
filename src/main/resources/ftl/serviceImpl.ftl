@@ -44,9 +44,11 @@ public class ${tableName}ServiceImpl implements ${tableName}Service{
 	@Override
 	@Transactional(rollbackFor = {Exception.class, GlobalException.class})
 	public ResultBody insert(${tableName} t){
-		if(t == null){
+		if(t.getId() == null || t.getId().equals("")){
             return ResultUtils.error(Code.PARAM_ERROR);
         }
+		String id = StringUtils.getNanotime();
+		t.setId(id);
  		return ResultUtils.returnOneData(mapper.insert(t),null);
 	}
 	
@@ -76,26 +78,10 @@ public class ${tableName}ServiceImpl implements ${tableName}Service{
 	@Override
 	@Transactional(rollbackFor = {Exception.class, GlobalException.class})
 	public ResultBody delete(${tableName} t){
-		if(t == null){
+		if(t == null || t.getId() == null || t.getId().equals("")){
             return ResultUtils.error(Code.PARAM_ERROR);
         }
 		return ResultUtils.returnOneData(mapper.delete(t),null);
-	}
-
-	/**
-	 * @Title: deleteAll
-	 * @Description: 批量删除
-	 * @param ids  id字符串
-	 * @author lihaichao
-	 * @date createTime：2018年5月19日上午11:14:56
-	 */
-	@Override
-	@Transactional(rollbackFor = {Exception.class, GlobalException.class})
-	public ResultBody deleteAll(String ids){
-		if(ids == null || ids.equals("") || ids.split(",").length == 0){
- 			return ResultUtils.error(Code.PARAM_ERROR);
-		}
-		return ResultUtils.returnMultiData(mapper.deleteAll(ids.split(",")),null);
 	}
 	
 }

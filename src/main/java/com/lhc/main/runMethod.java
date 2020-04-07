@@ -17,8 +17,8 @@ public class runMethod {
 		DatabaseUtils db = new DatabaseUtils();
 		db.generateModel();//生成实体类
 		db.generateInterface();//生成dao,service,controller
-		//db.generateListHTML(); //生成HTML和JS文件
-		//db.generateSSMProperties();//生成配置文件
+		db.generateListHTML(); //生成HTML和JS文件
+		db.generateSSMProperties();//生成配置文件
 		System.out.println("文件已生成");
 	}
 	

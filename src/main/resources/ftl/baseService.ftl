@@ -36,30 +36,22 @@ public interface BaseService<T> {
 	/**
 	 * @Title: update 
 	 * @Description: 修改数据   
-	 * @param p
+	 * @param t
 	 * @author lihaichao
 	 * @date createTime：2018年5月19日上午11:09:52
 	 */
-    ResultBody update(T p);
+    ResultBody update(T t);
 	
 	
 	/**
 	 * @Title: delete 
 	 * @Description: 删除数据  （默认根据主键删除 也可根据其他列删除 如果不带任何参数 则删除全部 慎用！）
-	 * @param p
+	 * @param t
 	 * @return int
 	 * @author lihaichao 
 	 * @date createTime：2018年5月19日上午11:14:05
 	 */
-    ResultBody delete(T p);
+    ResultBody delete(T t);
 	
-	
-	/**
-	 * @Title: deleteAll 
-	 * @Description: 批量删除  
-	 * @param ids  id字符串
-	 * @author lihaichao
-	 * @date createTime：2018年5月19日上午11:14:56
-	 */
-    ResultBody deleteAll(String ids);
+
 }

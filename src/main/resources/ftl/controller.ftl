@@ -16,6 +16,7 @@ import ${servicePackage}.${tableName}Service;
 **/
 @RestController
 @RequestMapping(value="${tableNameL}")
+@Api(value = "${tableNameL}" , description = "${tableNameL}")
 public class ${tableName}Controller {
 
 	@Resource
@@ -23,6 +24,7 @@ public class ${tableName}Controller {
 	ModelAndView mav = new ModelAndView();
 
 	//列表页
+	@ApiIgnore
 	@RequestMapping("list.html")
     public ModelAndView list(){
         mav.setViewName("${tableNameL}/list");
@@ -30,6 +32,7 @@ public class ${tableName}Controller {
     }
 
 	//新增页
+	@ApiIgnore
 	@RequestMapping("add.html")
     public ModelAndView addInput(){
         mav.setViewName("${tableNameL}/add");
@@ -37,6 +40,7 @@ public class ${tableName}Controller {
     }
 
 	//修改页
+	@ApiIgnore
     @RequestMapping("edit.html")
     public ModelAndView editInput(String id){
         mav.addObject("id",id);
@@ -50,6 +54,7 @@ public class ${tableName}Controller {
 	 * @param t
 	 * @author lhc
 	 */
+	@ApiOperation(value = "查询所有信息")
 	@RequestMapping(value = "selectAll",method={RequestMethod.GET,RequestMethod.POST})
 	public ResultBody selectAll(${tableName} t){
 		return service.selectAll(t);
@@ -62,6 +67,7 @@ public class ${tableName}Controller {
 	 * @param t
 	 * @author lhc
 	 */
+	@ApiOperation(value = "插入")
 	@RequestMapping(value = "insert",method={RequestMethod.GET,RequestMethod.POST})
 	public ResultBody insert(${tableName} t){
 		return service.insert(t);
@@ -74,6 +80,7 @@ public class ${tableName}Controller {
 	 * @param t
 	 * @author lhc
 	 */
+	@ApiOperation(value = "修改")
 	@RequestMapping(value = "update",method={RequestMethod.GET,RequestMethod.POST})
 	public ResultBody update(${tableName} t){
 		return service.update(t);
@@ -86,22 +93,11 @@ public class ${tableName}Controller {
 	 * @param t
 	 * @author lhc
 	 */
+	@ApiOperation(value = "删除(传入主键)")
 	@RequestMapping(value = "delete",method={RequestMethod.GET,RequestMethod.POST})
 	public ResultBody delete(${tableName} t){
 		return service.delete(t);
 	}
 
-
-	/**
-	 * @Title: deleteAll
-	 * @Description: 批量删除
-	 * @param ids  id字符串
-	 * @author lihaichao
-	 * @date createTime：2018年5月19日上午11:14:56
-	 */
-	@RequestMapping(value = "deleteAll",method={RequestMethod.GET,RequestMethod.POST})
-	public ResultBody deleteAll(String ids){
-		return service.deleteAll(ids);
-	}
 
 }
